@@ -11,7 +11,8 @@ type Book struct {
 }
 
 func main() {
-	classes, err := section2.ReadJson()
-	err = section2.WriteFile(classes)
-	log.Fatal(err)
+	logger := log.Default()
+	client := section2.NewClient(section2.BaseUrl, 3, logger)
+	ads, _ := client.GetAdByCate()
+	logger.Println("Total %d", ads.Total)
 }
